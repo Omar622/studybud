@@ -2,7 +2,11 @@
 <hr>
 {% for message in total_messages %}
 <div>
-    <small>@{{message.user.username}}, {{message.created|timesince}} ago replied to "{{message.room.name}}"</small>
+    <small>
+        <a href="{% url 'user-profile' message.user.id %}">@{{message.user.username}}</a>
+        , {{message.created|timesince}} ago replied to 
+        <a href="{% url 'room' message.room.id %}">"{{message.room.name}}"</a>
+    </small>
     <p>{{message.body}}</p>
     {% if request.user == message.user %}
     <a href="{% url 'delete-message' message.id %}">Delete</a>

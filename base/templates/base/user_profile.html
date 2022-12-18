@@ -2,21 +2,21 @@
 
 {% block content %}
 
-<h1>Home</h1>
-<div class="home-container">
+<h1>{{user.username}}</h1>
+<div class="profile-container">
     <div>
         {% include 'base/topics_component.html' %}
     </div>
 
     <div>
-        <h3>{{rooms_count}} rooms available</h3>
-        <a href="{% url 'create-room' %}">Create Room</a>
+        <h3>study rooms</h3>
         {% include 'base/feed_component.html' %}
     </div>
 
     <div>
         {% include 'base/activity_component.html' %}
     </div>
+
 </div>
 
 {% endblock content %}

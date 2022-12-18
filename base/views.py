@@ -101,6 +101,17 @@ def room(request, pk):
     return render(request, 'base/room.html', context)
 
 
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    rooms = Room.objects.filter(host__username=user.username)
+    total_messages = Message.objects.filter(user__username=user.username)
+    topics = Topic.objects.all()
+
+    context = {'rooms': rooms, 'topics': topics,
+               'total_messages': total_messages, 'user': user}
+    return render(request, 'base/user_profile.html', context)
+
+
 @login_required(login_url='login')
 def createRoom(request):
     if request.method == 'POST':
